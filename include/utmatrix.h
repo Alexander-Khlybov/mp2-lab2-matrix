@@ -263,7 +263,11 @@ TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 template <class ValType> // сравнение
 int TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
-    for (int i = 0; i < Size; i++);
+    if (Size != mt.Size)
+        return 0;
+    for (int i = 0; i < Size; i++)
+        if (pVector[i] != mt.pVector[i])
+            return 0;
     return 1;
 } /*-------------------------------------------------------------------------*/
 
