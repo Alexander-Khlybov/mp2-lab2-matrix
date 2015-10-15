@@ -251,7 +251,7 @@ TMatrix<ValType>::TMatrix(const TVector<TVector<ValType> > &mt):
 template <class ValType> // сравнение
 int TMatrix<ValType>::operator==(const TMatrix<ValType> &mt) const
 {
-    return 1;
+    return 0;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
