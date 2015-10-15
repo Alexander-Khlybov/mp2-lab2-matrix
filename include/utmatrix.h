@@ -65,6 +65,9 @@ TVector<ValType>::TVector(int s, int si)
     if (s < 1)
         throw
         length_error("Length of vector must be positive");
+    else if (s > MAX_VECTOR_SIZE)
+        throw
+        length_error("length of vector must be less than (MAX_VECTOR_SIZE + 1)");
     Size = s;
     pVector = new ValType[s];
     if ((si < 0) || (si > s - 1))
