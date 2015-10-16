@@ -24,87 +24,87 @@ TEST(TMatrix, can_create_copied_matrix)
   ASSERT_NO_THROW(TMatrix<int> m1(m));
 }
 
-TEST(TMatrix, copied_matrix_is_equal_to_source_one)
+TEST(TMatrix, DISABLED_copied_matrix_is_equal_to_source_one)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, copied_matrix_has_its_own_memory)
+TEST(TMatrix, DISABLED_copied_matrix_has_its_own_memory)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_get_size)
+TEST(TMatrix, DISABLED_can_get_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_set_and_get_element)
+TEST(TMatrix, DISABLED_can_set_and_get_element)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, throws_when_set_element_with_negative_index)
+TEST(TMatrix, DISABLED_throws_when_set_element_with_negative_index)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, throws_when_set_element_with_too_large_index)
+TEST(TMatrix, DISABLED_throws_when_set_element_with_too_large_index)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_assign_matrix_to_itself)
+TEST(TMatrix, DISABLED_can_assign_matrix_to_itself)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_assign_matrices_of_equal_size)
+TEST(TMatrix, DISABLED_can_assign_matrices_of_equal_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, assign_operator_change_matrix_size)
+TEST(TMatrix, DISABLED_assign_operator_change_matrix_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_assign_matrices_of_different_size)
+TEST(TMatrix, DISABLED_can_assign_matrices_of_different_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, compare_equal_matrices_return_true)
+TEST(TMatrix, DISABLED_compare_equal_matrices_return_true)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, compare_matrix_with_itself_return_true)
+TEST(TMatrix, DISABLED_compare_matrix_with_itself_return_true)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, matrices_with_different_size_are_not_equal)
+TEST(TMatrix, DISABLED_matrices_with_different_size_are_not_equal)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_add_matrices_with_equal_size)
+TEST(TMatrix, DISABLED_can_add_matrices_with_equal_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, cant_add_matrices_with_not_equal_size)
+TEST(TMatrix, DISABLED_cant_add_matrices_with_not_equal_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, can_subtract_matrices_with_equal_size)
+TEST(TMatrix, DISABLED_can_subtract_matrices_with_equal_size)
 {
   ADD_FAILURE();
 }
 
-TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
+TEST(TMatrix, DISABLED_cant_subtract_matrixes_with_not_equal_size)
 {
   ADD_FAILURE();
 }
