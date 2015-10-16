@@ -138,9 +138,13 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
     EXPECT_EQ(1, a != b);
 }
 
-TEST(TVector, DISABLED_can_add_scalar_to_vector)
+TEST(TVector, can_add_scalar_to_vector)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    TVector<int> b(a);
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] += 3;
+    EXPECT_EQ(a, b + 3);
 }
 
 TEST(TVector, DISABLED_can_subtract_scalar_from_vector)
