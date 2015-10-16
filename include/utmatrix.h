@@ -297,7 +297,8 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
         throw
         exception("You can not fold matrices of non equal sizes.");
     TMatrix<ValType> tmp(*this);
-    tmp = tmp + mt;
+    for (int i = 0; i < Size; i++)
+        tmp.pVector[i] = tmp.pVector[i] + mt.pVector[i];
     return tmp;
 } /*-------------------------------------------------------------------------*/
 
@@ -308,7 +309,8 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
         throw
         exception("You can not subtract matrices of non equal sizes.");
     TMatrix<ValType> tmp(*this);
-    tmp = tmp + mt;
+    for (int i = 0; i < Size; i++)
+        tmp.pVector[i] = tmp.pVector[i] - mt.pVector[i];
     return tmp;
 } /*-------------------------------------------------------------------------*/
 
