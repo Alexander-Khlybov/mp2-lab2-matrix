@@ -156,9 +156,15 @@ TEST(TVector, can_subtract_scalar_from_vector)
     EXPECT_EQ(a, b - 3);
 }
 
-TEST(TVector, DISABLED_can_multiply_scalar_by_vector)
+TEST(TVector, can_multiply_scalar_by_vector)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] = 1;
+    TVector<int> b(a);
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] *= 3;
+    EXPECT_EQ(a, b * 3);
 }
 
 TEST(TVector, DISABLED_can_add_vectors_with_equal_size)
