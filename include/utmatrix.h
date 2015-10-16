@@ -108,7 +108,7 @@ ValType& TVector<ValType>::operator[](int pos)
 template <class ValType> // сравнение
 int TVector<ValType>::operator==(const TVector &v) const
 {
-    int tmp = 1
+    int tmp = 1;
     if (this != &v)
     {
         if (Size != v.Size)
