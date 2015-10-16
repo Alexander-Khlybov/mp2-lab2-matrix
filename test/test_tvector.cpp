@@ -114,19 +114,28 @@ TEST(TVector, can_assign_vectors_of_different_size)
     ASSERT_NO_THROW(a = b);
 }
 
-TEST(TVector, DISABLED_compare_equal_vectors_return_true)
+TEST(TVector, compare_equal_vectors_return_true)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    a[3] = 7;
+    TVector<int> b(5);
+    b[3] = 7;
+
+    EXPECT_EQ(1, a == b);
 }
 
-TEST(TVector, DISABLED_compare_vector_with_itself_return_true)
+TEST(TVector, compare_vector_with_itself_return_true)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    a[3] = 7;
+    EXPECT_EQ(1, a == a);
 }
 
-TEST(TVector, DISABLED_vectors_with_different_size_are_not_equal)
+TEST(TVector, vectors_with_different_size_are_not_equal)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    TVector<int> b(6);
+    EXPECT_EQ(1, a != b);
 }
 
 TEST(TVector, DISABLED_can_add_scalar_to_vector)
