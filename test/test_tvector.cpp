@@ -37,9 +37,12 @@ TEST(TVector, copied_vector_is_equal_to_source_one)
     EXPECT_EQ(a, b);
 }
 
-TEST(TVector, DISABLED_copied_vector_has_its_own_memory)
+TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    a[3] = 7;
+    TVector<int> b(a);
+    EXPECT_NE(&a[0], &b[0]);
 }
 
 TEST(TVector, can_get_size)
