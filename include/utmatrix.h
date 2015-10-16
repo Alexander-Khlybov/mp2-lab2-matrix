@@ -108,7 +108,7 @@ ValType& TVector<ValType>::operator[](int pos)
 template <class ValType> // сравнение
 int TVector<ValType>::operator==(const TVector &v) const
 {
-    int tmp = 1
+    int tmp = 1;
     if (this != &v)
     {
         if (Size != v.Size)
@@ -235,8 +235,12 @@ public:
   }
   friend ostream & operator<<( ostream &out, const TMatrix &mt)
   {
-    for (int i = 0; i < mt.Size; i++)
-      out << mt.pVector[i] << endl;
+      for (int i = 0; i < mt.Size; i++)
+      {
+          for (int j = 0; j < i; j++)
+              out << "\t";
+          out << mt.pVector[i] << endl;
+      }
     return out;
   }
 };
