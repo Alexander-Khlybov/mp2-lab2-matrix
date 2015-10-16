@@ -236,16 +236,21 @@ public:
 };
 
 template <class ValType>
-TMatrix<ValType>::TMatrix(int s): TVector<TVector<ValType> >(s)
+TMatrix<ValType>::TMatrix(int s)
 {
     if (s < 1)
         throw
         length_error("Matrix size must be positive");
-    else if (s > MAX_VECTOR_SIZE)
+    else if (s > MAX_MATRIX_SIZE)
         throw
-        length_error("Matrix size must be less than (MAX_MATRIX_SIZE + 1)");
+        length_error("Matrix size must be less than (MAX_MATRIX_SIZE + 1)"); 
+    Size = s;
+    pVector = new TVector<ValType>[s];
     for (int i = 0; i < s; i++)
-        pVector[i] = TVector<ValType>(s - i, i);
+    {
+        TVector<ValType> a(s - i, i);
+        pVector[i] = a;
+    }
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // конструктор копирования
@@ -293,13 +298,23 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 template <class ValType> // сложение
 TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 {
-    return mt;
+    if (Size != mt.Size)
+        throw
+        exception("You can not fold matrices of non equal sizes.");
+    TMatrix<ValType> tmp(*this);
+    tmp = tmp + mt;
+    return tmp;
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
-    return mt;
+    if (size != mt.Size)
+        throw
+        exception("You can not subtract matrices of non equal sizes.");
+    TMatrix<ValType> tmp(*this);
+    tmp = tmp + mt;
+    return tmp;
 } /*-------------------------------------------------------------------------*/
 
 // TVector О3 Л2 П4 С6
