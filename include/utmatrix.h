@@ -65,13 +65,16 @@ TVector<ValType>::TVector(int s, int si)
     if (s < 1)
         throw
         length_error("Length of vector must be positive");
+    else if (s > MAX_VECTOR_SIZE)
+        throw
+        length_error("length of vector must be less than (MAX_VECTOR_SIZE + 1)");
     Size = s;
-    pVector = new ValType[s];
-    if ((si < 0) || (si > s - 1))
+    if (si < 0)
         throw
         out_of_range("Out of range");
     StartIndex = si;
 
+    pVector = new ValType[s];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования
@@ -93,10 +96,13 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-    if ((pos < StartIndex) || (pos >= Size))
+    if ((pos < 0) || (pos >= (Size + StartIndex)))
         throw
         out_of_range("Out of range");
-    return pVector[pos];
+    else if (pos < StartIndex)
+        throw
+        exception("This element is empty by definition. You cannot change it.");
+    return pVector[pos - StartIndex];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> // сравнение
@@ -202,7 +208,7 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
     ValType sum = 0;
     for (int i = 0; i < Size; i++)
         sum += pVector[i] * v.pVector[i];
-    return tmp;
+    return sum;
 } /*-------------------------------------------------------------------------*/
 
 
