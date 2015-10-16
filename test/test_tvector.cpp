@@ -81,24 +81,37 @@ TEST(TVector, throws_when_set_element_with_too_large_index)
     ASSERT_ANY_THROW(a[7] = 1);
 }
 
-TEST(TVector, DISABLED_can_assign_vector_to_itself)
+TEST(TVector, can_assign_vector_to_itself)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+  ASSERT_NO_THROW(a = a);
 }
 
-TEST(TVector, DISABLED_can_assign_vectors_of_equal_size)
+TEST(TVector, can_assign_vectors_of_equal_size)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    a[3] = 7;
+    TVector<int> b(5);
+    
+    ASSERT_NO_THROW(a = b);
 }
 
-TEST(TVector, DISABLED_assign_operator_change_vector_size)
+TEST(TVector, assign_operator_change_vector_size)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    TVector<int> b(7);
+    int t = a.GetSize();
+    a = b;
+    EXPECT_NE(t, a.GetSize());
 }
 
-TEST(TVector, DISABLED_can_assign_vectors_of_different_size)
+TEST(TVector, can_assign_vectors_of_different_size)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    a[3] = 7;
+    TVector<int> b(7);
+
+    ASSERT_NO_THROW(a = b);
 }
 
 TEST(TVector, DISABLED_compare_equal_vectors_return_true)
