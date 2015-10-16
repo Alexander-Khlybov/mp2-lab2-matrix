@@ -67,9 +67,10 @@ TEST(TVector, can_set_and_get_element)
   EXPECT_EQ(4, v[0]);
 }
 
-TEST(TVector, DISABLED_throws_when_set_element_with_negative_index)
+TEST(TVector, throws_when_set_element_with_negative_index)
 {
-  ADD_FAILURE();
+    TVector<int> a(5);
+    ASSERT_ANY_THROW(a[-1] = 1);
 }
 
 TEST(TVector, DISABLED_throws_when_set_element_with_too_large_index)
