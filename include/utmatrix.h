@@ -234,6 +234,7 @@ public:
   TMatrix& operator= (const TMatrix &mt);        // присваивание
   TMatrix  operator+ (const TMatrix &mt);        // сложение
   TMatrix  operator- (const TMatrix &mt);        // вычитание
+  void FSV(int k = 0);
 
   // ввод / вывод
   friend istream& operator>>(istream &in, TMatrix &mt)
@@ -324,7 +325,7 @@ TMatrix<ValType> TMatrix<ValType>::operator+(const TMatrix<ValType> &mt)
 template <class ValType> // вычитание
 TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 {
-    if (size != mt.Size)
+    if (Size != mt.Size)
         throw
         exception("You can not subtract matrices of non equal sizes.");
     TMatrix<ValType> tmp(*this);
@@ -332,6 +333,13 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
         tmp.pVector[i] = tmp.pVector[i] - mt.pVector[i];
     return tmp;
 } /*-------------------------------------------------------------------------*/
+
+template<class ValType>
+void TMatrix<ValType>::FSV(int k)
+{
+    for (int i = 0; i < Size; i++)
+        pVector[i].FSV(k);
+}
 
 // TVector О3 Л2 П4 С6
 // TMatrix О2 Л2 П3 С3
