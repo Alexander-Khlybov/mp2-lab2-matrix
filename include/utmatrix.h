@@ -44,6 +44,8 @@ public:
   TVector  operator-(const TVector &v);     // вычитание
   ValType  operator*(const TVector &v);     // скалярное произведение
 
+  void FSV(int k = 0); // заполнение вектора одинаковыми значениями
+
   // ввод-вывод
   friend istream& operator>>(istream &in, TVector &v)
   {
@@ -210,6 +212,13 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
         sum += pVector[i] * v.pVector[i];
     return sum;
 } /*-------------------------------------------------------------------------*/
+
+template<class ValType>
+void TVector<ValType>::FSV(int k)
+{
+    for (int i = 0; i < Size; i++)
+        pVector[i] = k;
+}
 
 
 // Верхнетреугольная матрица
