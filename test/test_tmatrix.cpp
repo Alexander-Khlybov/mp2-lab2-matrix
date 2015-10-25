@@ -27,8 +27,6 @@ TEST(TMatrix, can_create_copied_matrix)
 TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[2][4] = 7;
     TMatrix<int> b(a);
     EXPECT_EQ(a, b);
 }
@@ -36,10 +34,8 @@ TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 TEST(TMatrix, copied_matrix_has_its_own_memory)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[2][4] = 7;
     TMatrix<int> b(a);
-    EXPECT_NE(&a[0], &b[0]);
+    EXPECT_NE(&a, &b);
 }
 
 TEST(TMatrix, can_get_size)
@@ -51,7 +47,6 @@ TEST(TMatrix, can_get_size)
 TEST(TMatrix, can_set_and_get_element)
 {
     TMatrix<int> a(5);
-    a.FSV();
     a[2][4] = 7;
     EXPECT_EQ(7, a[2][4]);
 }
@@ -112,40 +107,27 @@ TEST(TMatrix, can_assign_matrices_of_different_size)
 TEST(TMatrix, compare_equal_matrices_return_true)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
-    TMatrix<int> b(5);
-    b.FSV();
-    b[3][3] = 1;
+    TMatrix<int> b(a);
     EXPECT_EQ(1, a == b);
 }
 
 TEST(TMatrix, compare_matrix_with_itself_return_true)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
     EXPECT_EQ(1, a == a);
 }
 
 TEST(TMatrix, matrices_with_different_size_are_not_equal)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
-    TMatrix<int> b(7);
-    b.FSV();
-    b[3][3] = 1;
+    TMatrix<int> b(6);
     EXPECT_EQ(0, a == b);
 }
 
 TEST(TMatrix, can_add_matrices_with_equal_size)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
     TMatrix<int> b(5);
-    b.FSV();
     b[3][4] = 1;
     ASSERT_NO_THROW(a + b);
 }
@@ -153,32 +135,20 @@ TEST(TMatrix, can_add_matrices_with_equal_size)
 TEST(TMatrix, cant_add_matrices_with_not_equal_size)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
     TMatrix<int> b(7);
-    b.FSV();
-    b[3][3] = 1;
     ASSERT_ANY_THROW(a + b);
 }
 
 TEST(TMatrix, can_subtract_matrices_with_equal_size)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
     TMatrix<int> b(5);
-    b.FSV();
-    b[3][4] = 1;
     ASSERT_NO_THROW(a - b);
 }
 
 TEST(TMatrix, cant_subtract_matrixes_with_not_equal_size)
 {
     TMatrix<int> a(5);
-    a.FSV();
-    a[3][3] = 1;
     TMatrix<int> b(7);
-    b.FSV();
-    b[3][3] = 1;
     ASSERT_ANY_THROW(a - b);
 }

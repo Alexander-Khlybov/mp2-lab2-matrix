@@ -32,7 +32,8 @@ TEST(TVector, can_create_copied_vector)
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
     TVector<int> a(5);
-    a.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] = 0;
     a[3] = 7;
     TVector<int> b(a);
     EXPECT_EQ(a, b);
@@ -41,7 +42,8 @@ TEST(TVector, copied_vector_is_equal_to_source_one)
 TEST(TVector, copied_vector_has_its_own_memory)
 {
     TVector<int> a(5);
-    a.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] = 0;
     a[3] = 7;
     TVector<int> b(a);
     EXPECT_NE(&a[0], &b[0]);
@@ -64,7 +66,8 @@ TEST(TVector, can_get_start_index)
 TEST(TVector, can_set_and_get_element)
 {
   TVector<int> v(4);
-  v.FSV();
+  for (int i = 0; i < v.GetSize(); i++)
+      v[i] = 0;
   v[0] = 4;
 
   EXPECT_EQ(4, v[0]);
@@ -93,7 +96,8 @@ TEST(TVector, can_assign_vector_to_itself)
 TEST(TVector, can_assign_vectors_of_equal_size)
 {
     TVector<int> a(5);
-    a.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] = 0;
     a[3] = 7;
     TVector<int> b(5);
     
@@ -121,19 +125,22 @@ TEST(TVector, can_assign_vectors_of_different_size)
 TEST(TVector, compare_equal_vectors_return_true)
 {
     TVector<int> a(5);
-    a.FSV();
-    a[3] = 7;
     TVector<int> b(5);
-    b.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+    {
+        a[i] = 0;
+        b[i] = 0;
+    }
+    a[3] = 7;
     b[3] = 7;
 
-    EXPECT_EQ(1, a == b);
+    EXPECT_EQ(1,  a == b );
 }
 
 TEST(TVector, compare_vector_with_itself_return_true)
 {
     TVector<int> a(5);
-    a.FSV();
+    a[3] = 7;
     a[3] = 7;
     EXPECT_EQ(1, a == a);
 }
@@ -141,16 +148,21 @@ TEST(TVector, compare_vector_with_itself_return_true)
 TEST(TVector, vectors_with_different_size_are_not_equal)
 {
     TVector<int> a(5);
-    a.FSV();
     TVector<int> b(6);
-    b.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+    {
+        a[i] = 0;
+        b[i] = 0;
+    }
+    b[5] = 0;
     EXPECT_EQ(1, a != b);
 }
 
 TEST(TVector, can_add_scalar_to_vector)
 {
     TVector<int> a(5);
-    a.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] = 0;
     TVector<int> b(a);
     for (int i = 0; i < a.GetSize(); i++)
         a[i] += 3;
@@ -160,7 +172,8 @@ TEST(TVector, can_add_scalar_to_vector)
 TEST(TVector, can_subtract_scalar_from_vector)
 {
     TVector<int> a(5);
-    a.FSV();
+    for (int i = 0; i < a.GetSize(); i++)
+        a[i] = 0;
     TVector<int> b(a);
     for (int i = 0; i < a.GetSize(); i++)
         a[i] -= 3;
@@ -170,7 +183,8 @@ TEST(TVector, can_subtract_scalar_from_vector)
 TEST(TVector, can_multiply_scalar_by_vector)
 {
     TVector<int> a(5);
-    a.FSV(1);
+    for(int i = 0; i < a.GetSize(); i++)
+        a[i] = 1;
     TVector<int> b(a);
     for (int i = 0; i < a.GetSize(); i++)
         a[i] *= 3;

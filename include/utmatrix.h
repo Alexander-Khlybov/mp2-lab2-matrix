@@ -44,8 +44,6 @@ public:
   TVector  operator-(const TVector &v);     // вычитание
   ValType  operator*(const TVector &v);     // скалярное произведение
 
-  void FSV(int k = 0); // заполнение вектора одинаковыми значениями
-
   // ввод-вывод
   friend istream& operator>>(istream &in, TVector &v)
   {
@@ -213,14 +211,6 @@ ValType TVector<ValType>::operator*(const TVector<ValType> &v)
     return sum;
 } /*-------------------------------------------------------------------------*/
 
-template<class ValType>
-void TVector<ValType>::FSV(int k)
-{
-    for (int i = 0; i < Size; i++)
-        pVector[i] = k;
-}
-
-
 // Верхнетреугольная матрица
 template <class ValType>
 class TMatrix : public TVector<TVector<ValType> >
@@ -234,7 +224,6 @@ public:
   TMatrix& operator= (const TMatrix &mt);        // присваивание
   TMatrix  operator+ (const TMatrix &mt);        // сложение
   TMatrix  operator- (const TMatrix &mt);        // вычитание
-  void FSV(int k = 0);
 
   // ввод / вывод
   friend istream& operator>>(istream &in, TMatrix &mt)
@@ -333,13 +322,6 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
         tmp.pVector[i] = tmp.pVector[i] - mt.pVector[i];
     return tmp;
 } /*-------------------------------------------------------------------------*/
-
-template<class ValType>
-void TMatrix<ValType>::FSV(int k)
-{
-    for (int i = 0; i < Size; i++)
-        pVector[i].FSV(k);
-}
 
 // TVector О3 Л2 П4 С6
 // TMatrix О2 Л2 П3 С3
