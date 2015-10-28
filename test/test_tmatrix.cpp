@@ -107,7 +107,6 @@ TEST(TMatrix, assign_operator_change_matrix_size)
     TMatrix<int> b(7);
     int x = a.GetSize();
     a = b;
-    int x2 = a.GetSize();
     EXPECT_NE(x, a.GetSize());
 }
 

@@ -46,7 +46,7 @@ TEST(TVector, copied_vector_has_its_own_memory)
         a[i] = 0;
     a[3] = 7;
     TVector<int> b(a);
-    EXPECT_NE(&a[0], &b[0]);
+    EXPECT_NE(&a[a.GetStartIndex()], &b[b.GetStartIndex()]);
 }
 
 TEST(TVector, can_get_size)
@@ -89,6 +89,12 @@ TEST(TVector, throws_when_set_element_with_too_large_index)
     ASSERT_ANY_THROW(a[7] = 1);
 }
 
+TEST(TVector, throws_when_set_element_with_index_less_than_StartIndex)
+{
+    TVector<int> a(5, 3);
+    ASSERT_ANY_THROW(a[2] = 1);
+}
+
 TEST(TVector, can_assign_vector_to_itself)
 {
     TVector<int> a(5);
@@ -113,6 +119,15 @@ TEST(TVector, assign_operator_change_vector_size)
     int t = a.GetSize();
     a = b;
     EXPECT_NE(t, a.GetSize());
+}
+
+TEST(TVector, assign_operator_change_StartIndex)
+{
+    TVector<int> a(5, 1);
+    TVector<int> b(5, 2);
+    int t = a.GetStartIndex();
+    a = b;
+    EXPECT_NE(t, a.GetStartIndex());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
@@ -159,8 +174,6 @@ TEST(TVector, compare_equal_vectors_return_true)
 TEST(TVector, compare_vector_with_itself_return_true)
 {
     TVector<int> a(5);
-    a[3] = 7;
-    a[3] = 7;
     EXPECT_EQ(a, a);
 }
 
@@ -194,7 +207,7 @@ TEST(TVector, can_add_scalar_to_vector_EXP_EQ)
     EXPECT_EQ(a, b + 3);
 }
 
-TEST(TVector, can_substract_scalar_to_vector)
+TEST(TVector, can_substract_scalar_from_vector)
 {
     TVector<int> a(5);
     ASSERT_NO_THROW(a - 3);
