@@ -68,13 +68,13 @@ TVector<ValType>::TVector(int s, int si)
     else if (s > MAX_VECTOR_SIZE)
         throw
         length_error("length of vector must be less than (MAX_VECTOR_SIZE + 1)");
-    Size = s;
-    if (si < 0)
+    if ((si < 0) || (si > s))
         throw
         out_of_range("Out of range");
+    Size = s - si;
     StartIndex = si;
 
-    pVector = new ValType[s];
+    pVector = new ValType[s - si];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования
@@ -249,7 +249,7 @@ TMatrix<ValType>::TMatrix(int s) : TVector<TVector<ValType> >((s <= MAX_MATRIX_S
 {
     for (int i = 0; i < s; i++)
     {
-        pVector[i] = TVector<ValType>(s - i, i);
+        pVector[i] = TVector<ValType>(s, i);
     }
 } /*-------------------------------------------------------------------------*/
 
