@@ -68,13 +68,13 @@ TVector<ValType>::TVector(int s, int si)
     else if (s > MAX_VECTOR_SIZE)
         throw
         length_error("length of vector must be less than (MAX_VECTOR_SIZE + 1)");
-    if ((si < 0) || (si > s))
+    if ((si < 0) || (si >= s))
         throw
-        out_of_range("Out of range");
+        out_of_range("StartIndex must be >=0 and < Size");
     Size = s - si;
     StartIndex = si;
 
-    pVector = new ValType[s - si];
+    pVector = new ValType[Size];
 } /*-------------------------------------------------------------------------*/
 
 template <class ValType> //конструктор копирования

@@ -22,6 +22,16 @@ TEST(TVector, throws_when_create_vector_with_negative_startindex)
   ASSERT_ANY_THROW(TVector<int> v(5, -2));
 }
 
+TEST(TVector, throws_when_create_vector_with_StartIndex_equal_to_Size)
+{
+    ASSERT_ANY_THROW(TVector<int> v(5, 5));
+}
+
+TEST(TVector, throws_when_create_vector_with_StartIndex_bigger_than_Size)
+{
+    ASSERT_ANY_THROW(TVector<int> v(5,6));
+}
+
 TEST(TVector, can_create_copied_vector)
 {
   TVector<int> v(10);
