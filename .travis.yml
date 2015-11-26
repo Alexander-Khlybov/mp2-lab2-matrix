@@ -11,4 +11,4 @@ script:
   - cd ./bin/
   - ./test_set --gtest_list_tests
 notifications:
-  email: alekshlybov23@gmail.com
+  email: false
